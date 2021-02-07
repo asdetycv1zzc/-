@@ -123,6 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Calculate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Calculate.h" />
+    <ClInclude Include="InputFormat.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
