@@ -19,7 +19,7 @@ public:
 
 std::vector<int> Calculate(InputVector& inputVector,InputConvolutionkernel& inputConvolutionkernel)
 {
-	std::vector<int> FormatedInputVector, FormatedInputConvolutionkernel;
+	std::vector<std::vector<int>> FormatedInputVector, FormatedInputConvolutionkernel;
 
 	int VectorNumberEveryLine;//向量每行的长度 当为2行且个数为奇数时在整除后需要加1
 	int ConvolutionkernelNumberEveryLine;//卷积核每行的长度 当为2行且个数为奇数时在整除后需要加1
@@ -53,7 +53,11 @@ std::vector<int> Calculate(InputVector& inputVector,InputConvolutionkernel& inpu
 	{
 		for (long j = 0; i < VectorNumberEveryLine; i++)
 		{
-			FormatedInputVector[i][j] = inputVector.InputVector[]
+			if ((i * VectorNumberEveryLine + j) > (inputVector.InputVector.size() - 1))
+			{
+				FormatedInputVector[i][j] = 0;
+			}
+			FormatedInputVector[i][j] = inputVector.InputVector[i * VectorNumberEveryLine + j];
 		}
 	}
 }
