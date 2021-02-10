@@ -5,11 +5,11 @@ struct InputVector
 {
 public:
 	long lines;
-	std::vector<int> InputVector;
+	std::vector<int> inputVector;
 };
 struct InputConvolutionkernel
 {
 public:
 	long lines;
-	std::vector<int> InputVector;
+	std::vector<int> inputVector;
 };
