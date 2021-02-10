@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
-#include "Calculate.h"
+#include "Convert.h"
+#include "InputFormat.h"
 using namespace std;
 
 //≤‚ ‘¥Ûæÿ’Û£∫2 0 8 6 9 2 4 8 3 1 2 0 6 4 2 3
@@ -8,19 +9,24 @@ using namespace std;
 
 int main()
 {
+	
+	return 0;
+}
+void test()
+{
 	vector<int> TestInput, TestInputKernel;
-	int i,n,lines,temp;
+	int i, n, lines, temp;
 
 	cin >> n;
 	cin >> lines;
 
-	for (i = 0 ; i < n ; i++)
+	for (i = 0; i < n; i++)
 	{
 		cin >> temp;
 		TestInput.push_back(temp);
 	}
 
-	InputVector testInput;
+	InputConvertVector testInput;
 
 	testInput.inputVector = TestInput;
 	testInput.lines = lines;
@@ -34,11 +40,10 @@ int main()
 		TestInputKernel.push_back(temp);
 	}
 
-	InputConvolutionkernel testInputKernel;
+	InputConvertConvolutionkernel testInputKernel;
 
 	testInputKernel.inputVector = TestInputKernel;
 	testInputKernel.lines = lines;
 
 	Convert(testInput, testInputKernel);
-	return 0;
 }

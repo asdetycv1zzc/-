@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calculate.h">
+    <ClInclude Include="InputFormat.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="InputFormat.h">
+    <ClInclude Include="Convert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
