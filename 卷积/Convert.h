@@ -3,12 +3,7 @@
 #include<vector>
 #include "InputFormat.h"
 #include<exception>
-struct TryTimes
-{
-public:
-	int horizontalTimes;//横向需要计算的次数
-	int verticalTimes;//纵向需要计算的次数
-};
+
 /**
  * @brief 通过数组卷积来计算向量（二维）
  * @param inputConvertVector    输入数组，从左至右，从上到下拆散排列
@@ -18,25 +13,28 @@ public:
  *     若成功，返回true
  */
 
-bool Convert(InputConvertVector& inputVector,InputConvertConvolutionkernel& inputConvolutionkernel)
+
+bool Convert(InputConvertVector inputVector,InputConvertConvolutionkernel inputConvolutionkernel, InputCalculateVector& outputVector, InputCalculateConvolutionkernel& outputConvolutionkernel)
 {
+
 	try
 	{
-		std::vector<std::vector<int>> FormatedInputVector, FormatedInputConvolutionkernel;
+		InputCalculateConvolutionkernel FormatedInputConvolutionkernel;
+		InputCalculateVector FormatedInputVector;
 
 		//调整初始大小（临时
-		FormatedInputConvolutionkernel.resize(100);
-		FormatedInputVector.resize(100);
+		FormatedInputConvolutionkernel.Vector.resize(100);
+		FormatedInputVector.Vector.resize(100);
 
 		//调整二维数组的初始大小，下同
 		for (long i = 0; i < 100; i++)
 		{
-			FormatedInputConvolutionkernel[i].resize(100);
+			FormatedInputConvolutionkernel.Vector[i].resize(100);
 		}
 
 		for (long i = 0; i < 100; i++)
 		{
-			FormatedInputVector[i].resize(100);
+			FormatedInputVector.Vector[i].resize(100);
 		}
 
 		int VectorNumberEveryLine;//向量每行的长度 当为2行且个数为奇数时在整除后需要加1
@@ -45,15 +43,15 @@ bool Convert(InputConvertVector& inputVector,InputConvertConvolutionkernel& inpu
 		TryTimes CalculateTimes;//横纵向需要计算的次数
 
 		//算出每行卷积与卷积核的长度
-		VectorNumberEveryLine = inputVector.inputVector.size() / inputVector.lines;
-		ConvolutionkernelNumberEveryLine = inputConvolutionkernel.inputVector.size() / inputConvolutionkernel.lines;
+		VectorNumberEveryLine = inputVector.Vector.size() / inputVector.lines;
+		ConvolutionkernelNumberEveryLine = inputConvolutionkernel.Vector.size() / inputConvolutionkernel.lines;
 
 		//当卷积为2行且个数为奇数时，在整除后需要加1
-		if (inputVector.lines == 2 && inputVector.inputVector.size() % 2 == 1)
+		if (inputVector.lines == 2 && inputVector.Vector.size() % 2 == 1)
 		{
 			VectorNumberEveryLine += 1;
 		}
-		if (inputConvolutionkernel.lines == 2 && inputConvolutionkernel.inputVector.size() % 2 == 1)
+		if (inputConvolutionkernel.lines == 2 && inputConvolutionkernel.Vector.size() % 2 == 1)
 		{
 			ConvolutionkernelNumberEveryLine += 1;
 		}
@@ -71,24 +69,31 @@ bool Convert(InputConvertVector& inputVector,InputConvertConvolutionkernel& inpu
 		{
 			for (long j = 0; j < VectorNumberEveryLine; j++)
 			{
-				if ((i * VectorNumberEveryLine + j) > (inputVector.inputVector.size() - 1))
+				if ((i * VectorNumberEveryLine + j) > (inputVector.Vector.size() - 1))
 				{
-					FormatedInputVector[i][j] = 0;
+					FormatedInputVector.Vector[i][j] = 0;
 				}
-				FormatedInputVector[i][j] = inputVector.inputVector[i * VectorNumberEveryLine + j];
+				FormatedInputVector.Vector[i][j] = inputVector.Vector[i * VectorNumberEveryLine + j];
 			}
 		}
 		for (long i = 0; i < inputConvolutionkernel.lines; i++)
 		{
 			for (long j = 0; j < ConvolutionkernelNumberEveryLine; j++)
 			{
-				if ((i * ConvolutionkernelNumberEveryLine + j) > (inputConvolutionkernel.inputVector.size() - 1))
+				if ((i * ConvolutionkernelNumberEveryLine + j) > (inputConvolutionkernel.Vector.size() - 1))
 				{
-					FormatedInputConvolutionkernel[i][j] = 0;
+					FormatedInputConvolutionkernel.Vector[i][j] = 0;
 				}
-				FormatedInputConvolutionkernel[i][j] = inputConvolutionkernel.inputVector[i * ConvolutionkernelNumberEveryLine + j];
+				FormatedInputConvolutionkernel.Vector[i][j] = inputConvolutionkernel.Vector[i * ConvolutionkernelNumberEveryLine + j];
 			}
 		}
+
+		FormatedInputConvolutionkernel.VectorNumberEveryLine = ConvolutionkernelNumberEveryLine;
+		FormatedInputVector.VectorNumberEveryLine = VectorNumberEveryLine;
+
+		outputConvolutionkernel = FormatedInputConvolutionkernel;
+		outputVector = FormatedInputVector;
+
 		return true;
 	}
 

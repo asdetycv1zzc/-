@@ -28,7 +28,7 @@ void test()
 
 	InputConvertVector testInput;
 
-	testInput.inputVector = TestInput;
+	testInput.Vector = TestInput;
 	testInput.lines = lines;
 
 	cin >> n;
@@ -42,8 +42,10 @@ void test()
 
 	InputConvertConvolutionkernel testInputKernel;
 
-	testInputKernel.inputVector = TestInputKernel;
+	testInputKernel.Vector = TestInputKernel;
 	testInputKernel.lines = lines;
 
-	Convert(testInput, testInputKernel);
+	InputCalculateVector testOutput;
+	InputCalculateConvolutionkernel testOutputKernel;
+	Convert(testInput, testInputKernel,testOutput,testOutputKernel);
 }
