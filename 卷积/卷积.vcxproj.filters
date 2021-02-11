@@ -29,5 +29,11 @@
     <ClInclude Include="Calculate.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="OutputFormat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AllFormat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

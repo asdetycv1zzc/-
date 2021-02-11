@@ -127,9 +127,11 @@
     <ClCompile Include="Calculate.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllFormat.h" />
     <ClInclude Include="Calculate.h" />
     <ClInclude Include="Convert.h" />
     <ClInclude Include="InputFormat.h" />
+    <ClInclude Include="OutputFormat.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
