@@ -56,5 +56,13 @@ void test()
 	OutputKernel.lines = testOutputKernel.lines;
 	OutputKernel.Vector = testOutputKernel.Vector;
 	OutputKernel.VectorNumberEveryLine = testOutputKernel.VectorNumberEveryLine;
-	ConvolutionCalculate(testOutput, OutputKernel);
+	auto temp1 = ConvolutionCalculate(testOutput, OutputKernel);
+	for (long j = 0; j < temp1.Vector.size(); j++)
+	{
+		for (long k = 0; k < temp1.Vector.size(); k++)
+		{
+			cout << temp1.Vector[j][k] << " ";
+		}
+		cout << endl;
+	}
 }
