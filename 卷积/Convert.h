@@ -14,55 +14,60 @@
  */
 
 
-bool Convert(InputConvertVector inputVector,InputConvertConvolutionkernel inputConvolutionkernel, InputCalculateVector& outputVector, InputCalculateConvolutionkernel& outputConvolutionkernel)
+bool Convert(InputConvertVector inputVector, InputCalculateVector& outputVector)
 {
 
 	try
 	{
-		InputCalculateConvolutionkernel FormatedInputConvolutionkernel;
+		//InputCalculateConvolutionkernel FormatedInputConvolutionkernel;
 		InputCalculateVector FormatedInputVector;
 
-		//调整初始大小（临时
-		FormatedInputConvolutionkernel.Vector.resize(100);
-		FormatedInputVector.Vector.resize(100);
-
-		//调整二维数组的初始大小，下同
-		for (long i = 0; i < 100; i++)
-		{
-			FormatedInputConvolutionkernel.Vector[i].resize(100);
-		}
-
-		for (long i = 0; i < 100; i++)
-		{
-			FormatedInputVector.Vector[i].resize(100);
-		}
-
+		
 		int VectorNumberEveryLine;//向量每行的长度 当为2行且个数为奇数时在整除后需要加1
-		int ConvolutionkernelNumberEveryLine;//卷积核每行的长度 当为2行且个数为奇数时在整除后需要加1
+		//int ConvolutionkernelNumberEveryLine;//卷积核每行的长度 当为2行且个数为奇数时在整除后需要加1
 
-		TryTimes CalculateTimes;//横纵向需要计算的次数
+		//TryTimes CalculateTimes;//横纵向需要计算的次数
 
 		//算出每行卷积与卷积核的长度
 		VectorNumberEveryLine = inputVector.Vector.size() / inputVector.lines;
-		ConvolutionkernelNumberEveryLine = inputConvolutionkernel.Vector.size() / inputConvolutionkernel.lines;
+		//ConvolutionkernelNumberEveryLine = inputConvolutionkernel.Vector.size() / inputConvolutionkernel.lines;
 
 		//当卷积为2行且个数为奇数时，在整除后需要加1
 		if (inputVector.lines == 2 && inputVector.Vector.size() % 2 == 1)
 		{
 			VectorNumberEveryLine += 1;
 		}
+		/*
 		if (inputConvolutionkernel.lines == 2 && inputConvolutionkernel.Vector.size() % 2 == 1)
 		{
 			ConvolutionkernelNumberEveryLine += 1;
 		}
+		*/
+		//调整初始大小（临时
+		//FormatedInputConvolutionkernel.Vector.resize(inputVector.lines);
+		FormatedInputVector.Vector.resize(inputVector.lines);
+
+		//调整二维数组的初始大小，下同
+		/*
+		for (long i = 0; i < 100; i++)
+		{
+			FormatedInputConvolutionkernel.Vector[i].resize(100);
+		}
+		*/
+
+		for (long i = 0; i < inputVector.lines; i++)
+		{
+			FormatedInputVector.Vector[i].resize(VectorNumberEveryLine);
+		}
+
 
 		//算出横向纵向所需要卷积的次数
-		CalculateTimes.horizontalTimes = VectorNumberEveryLine - ConvolutionkernelNumberEveryLine + 1;
-		CalculateTimes.verticalTimes = inputVector.lines - inputConvolutionkernel.lines + 1;
+		//CalculateTimes.horizontalTimes = VectorNumberEveryLine - ConvolutionkernelNumberEveryLine + 1;
+		//CalculateTimes.verticalTimes = inputVector.lines - inputConvolutionkernel.lines + 1;
 
 		//算出卷积与卷积核的总大小
 		int VectorTotalNumber = VectorNumberEveryLine * inputVector.lines;
-		int ConvolutionkernelTotalNumber = ConvolutionkernelNumberEveryLine * inputConvolutionkernel.lines;
+		//int ConvolutionkernelTotalNumber = ConvolutionkernelNumberEveryLine * inputConvolutionkernel.lines;
 
 		//重新转为二维数组并补零
 		for (long i = 0; i < inputVector.lines; i++)
@@ -76,6 +81,7 @@ bool Convert(InputConvertVector inputVector,InputConvertConvolutionkernel inputC
 				FormatedInputVector.Vector[i][j] = inputVector.Vector[i * VectorNumberEveryLine + j];
 			}
 		}
+		/*
 		for (long i = 0; i < inputConvolutionkernel.lines; i++)
 		{
 			for (long j = 0; j < ConvolutionkernelNumberEveryLine; j++)
@@ -87,11 +93,15 @@ bool Convert(InputConvertVector inputVector,InputConvertConvolutionkernel inputC
 				FormatedInputConvolutionkernel.Vector[i][j] = inputConvolutionkernel.Vector[i * ConvolutionkernelNumberEveryLine + j];
 			}
 		}
+		*/
 
-		FormatedInputConvolutionkernel.VectorNumberEveryLine = ConvolutionkernelNumberEveryLine;
+		//FormatedInputConvolutionkernel.VectorNumberEveryLine = ConvolutionkernelNumberEveryLine;
 		FormatedInputVector.VectorNumberEveryLine = VectorNumberEveryLine;
 
-		outputConvolutionkernel = FormatedInputConvolutionkernel;
+		//FormatedInputConvolutionkernel.lines = inputConvolutionkernel.lines;
+		FormatedInputVector.lines = inputVector.lines;
+
+		//outputConvolutionkernel = FormatedInputConvolutionkernel;
 		outputVector = FormatedInputVector;
 
 		return true;
