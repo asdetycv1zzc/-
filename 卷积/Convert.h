@@ -3,6 +3,12 @@
 #include<vector>
 #include "InputFormat.h"
 #include<exception>
+#include<opencv2/opencv.hpp>
+#include<opencv2/core/core.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include <opencv2\imgproc\types_c.h>
+#include <opencv2/highgui/highgui_c.h>
+#include<fstream>
 
 /**
  * @brief 通过数组卷积来计算向量（二维）
@@ -14,7 +20,7 @@
  */
 
 
-bool Convert(InputConvertVector inputVector, InputCalculateVector& outputVector)
+bool Convert1Dto2D(InputConvertVector inputVector, InputCalculateVector& outputVector)
 {
 
 	try
@@ -112,4 +118,13 @@ bool Convert(InputConvertVector inputVector, InputCalculateVector& outputVector)
 		std::cout << "在转换向量出现了错误：" << e;
 		return false;
 	}
+}
+
+bool ConvertImagetoVector(const cv::String PictureAddress)
+{
+	auto VectorData = cv::imread(PictureAddress);
+	std::ofstream out;
+	out.open("./Data.txt");
+	out << VectorData << std::endl;
+	return true;
 }

@@ -39,4 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="G:\ChromeDownload\opencv\build\x64\vc15\lib\opencv_world451d.dll">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>

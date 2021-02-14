@@ -49,7 +49,7 @@ CalculatedVector ConvolutionCalculate(InputCalculateVector inputVector, InputCal
 	}
 
 	InputCalculateVector a;
-	Convert(tempResult, a);
+	Convert1Dto2D(tempResult, a);
 	result.Vector = a.Vector;
 
 	return result;

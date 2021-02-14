@@ -13,10 +13,11 @@ void test();
 void testRandom(long Geshu);
 int main()
 {
-	long Geshu;
+	//long Geshu;
 	//cin >> Geshu;
 	//testRandom(Geshu);
-	test();
+	//test();
+	ConvertImagetoVector("I:\\Documents\\Tencent Files\\1825294068\\QQ\\Photo\\2021-01-23-14.bmp");
 	return 0;
 }
 void test()
@@ -54,8 +55,8 @@ void test()
 
 	InputCalculateVector testOutput;
 	InputCalculateVector testOutputKernel;
-	Convert(testInput, testOutput);
-	Convert(testInputKernel, testOutputKernel);
+	Convert1Dto2D(testInput, testOutput);
+	Convert1Dto2D(testInputKernel, testOutputKernel);
 	InputCalculateConvolutionkernel OutputKernel;
 	OutputKernel.lines = testOutputKernel.lines;
 	OutputKernel.Vector = testOutputKernel.Vector;
