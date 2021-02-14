@@ -2,14 +2,17 @@
 #include<vector>
 #include "Convert.h"
 #include "InputFormat.h"
+#include "Calculate.h"
 using namespace std;
 
 //≤‚ ‘¥Ûæÿ’Û£∫2 0 8 6 9 2 4 8 3 1 2 0 6 4 2 3
 //≤‚ ‘–°æÿ’Û£∫1 3 2 4
 
+void test();
+
 int main()
 {
-	
+	test();
 	return 0;
 }
 void test()
@@ -40,12 +43,26 @@ void test()
 		TestInputKernel.push_back(temp);
 	}
 
-	InputConvertConvolutionkernel testInputKernel;
+	InputConvertVector testInputKernel;
 
 	testInputKernel.Vector = TestInputKernel;
 	testInputKernel.lines = lines;
 
 	InputCalculateVector testOutput;
-	InputCalculateConvolutionkernel testOutputKernel;
-	Convert(testInput, testInputKernel,testOutput,testOutputKernel);
+	InputCalculateVector testOutputKernel;
+	Convert(testInput, testOutput);
+	Convert(testInputKernel, testOutputKernel);
+	InputCalculateConvolutionkernel OutputKernel;
+	OutputKernel.lines = testOutputKernel.lines;
+	OutputKernel.Vector = testOutputKernel.Vector;
+	OutputKernel.VectorNumberEveryLine = testOutputKernel.VectorNumberEveryLine;
+	auto temp1 = ConvolutionCalculate(testOutput, OutputKernel);
+	for (long j = 0; j < temp1.Vector.size(); j++)
+	{
+		for (long k = 0; k < temp1.Vector.size(); k++)
+		{
+			cout << temp1.Vector[j][k] << " ";
+		}
+		cout << endl;
+	}
 }
