@@ -15,22 +15,22 @@ int main()
 {
 	long Geshu;
 	cin >> Geshu;
-	testRandom(Geshu);
-	//test();
+	//testRandom(Geshu);
+	test();
 	return 0;
 }
 void test()
 {
 	vector<int> TestInput, TestInputKernel;
-	int i, n, lines, temp;
+	long i, n, lines, temp;
 
 	cin >> n;
 	cin >> lines;
 
+	TestInput.resize(n);
 	for (i = 0; i < n; i++)
 	{
-		cin >> temp;
-		TestInput.push_back(temp);
+		cin >> TestInput[i];
 	}
 
 	InputConvertVector testInput;
@@ -75,6 +75,6 @@ void testRandom(long Geshu)
 	auto temp = RandomGenerator(Geshu);
 	for (long i = 0;i < temp.size();i++)
 	{
-		cout << temp[i];
+		cout << temp[i] << " ";
 	}
 }
