@@ -10,7 +10,7 @@ using namespace std;
 //≤‚ ‘–°æÿ’Û£∫1 3 2 4
 
 void test();
-
+void testRandom(long Geshu);
 int main()
 {
 	long Geshu;
