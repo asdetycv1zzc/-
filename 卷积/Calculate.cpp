@@ -14,7 +14,7 @@ void testRandom(long Geshu);
 int main()
 {
 	long Geshu;
-	cin >> Geshu;
+	//cin >> Geshu;
 	//testRandom(Geshu);
 	test();
 	return 0;
