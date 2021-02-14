@@ -132,6 +132,7 @@
     <ClInclude Include="Convert.h" />
     <ClInclude Include="InputFormat.h" />
     <ClInclude Include="OutputFormat.h" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

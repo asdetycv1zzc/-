@@ -3,6 +3,7 @@
 #include "Convert.h"
 #include "InputFormat.h"
 #include "Calculate.h"
+#include "Random.h"
 using namespace std;
 
 //²âÊÔ´ó¾ØÕó£º2 0 8 6 9 2 4 8 3 1 2 0 6 4 2 3
@@ -12,7 +13,10 @@ void test();
 
 int main()
 {
-	test();
+	long Geshu;
+	cin >> Geshu;
+	testRandom(Geshu);
+	//test();
 	return 0;
 }
 void test()
@@ -64,5 +68,13 @@ void test()
 			cout << temp1.Vector[j][k] << " ";
 		}
 		cout << endl;
+	}
+}
+void testRandom(long Geshu)
+{
+	auto temp = RandomGenerator(Geshu);
+	for (long i = 0;i < temp.size();i++)
+	{
+		cout << temp[i];
 	}
 }
