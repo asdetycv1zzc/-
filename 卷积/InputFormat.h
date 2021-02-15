@@ -16,22 +16,16 @@ public:
 	std::vector<int> Vector;
 };
 
+/*
 struct InputConvertConvolutionkernel
 {
 public:
 	long lines;
 	std::vector<int> Vector;
 };
+*/
 
 struct InputCalculateVector
-{
-public:
-	long lines;
-	std::vector<std::vector<int>> Vector;
-	long VectorNumberEveryLine;
-};
-
-struct InputCalculateConvolutionkernel
 {
 public:
 	long lines;

@@ -5,7 +5,7 @@
 #include "InputFormat.h"
 #include "OutputFormat.h"
 
-CalculatedVector ConvolutionCalculate(InputCalculateVector inputVector, InputCalculateConvolutionkernel inputConvolutionkernel)
+CalculatedVector ConvolutionCalculate(InputCalculateVector inputVector, InputCalculateVector inputConvolutionkernel)
 {
 	TryTimes CalculateTimes;//横纵向需要计算的次数
 

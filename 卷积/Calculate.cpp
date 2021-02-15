@@ -4,6 +4,12 @@
 #include "InputFormat.h"
 #include "Calculate.h"
 #include "Random.h"
+#include<opencv2/opencv.hpp>
+#include<opencv2/core/core.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include <opencv2\imgproc\types_c.h>
+#include <opencv2/highgui/highgui_c.h>
+
 using namespace std;
 
 //测试大矩阵：2 0 8 6 9 2 4 8 3 1 2 0 6 4 2 3
@@ -11,13 +17,15 @@ using namespace std;
 
 void test();
 void testRandom(long Geshu);
+void testImageConvert(cv::String Address);
 int main()
 {
 	//long Geshu;
 	//cin >> Geshu;
 	//testRandom(Geshu);
 	//test();
-	ConvertImagetoVector("I:\\Documents\\Tencent Files\\1825294068\\QQ\\Photo\\2021-01-23-14.bmp");
+	//ConvertImagetoVector("C:\\Users\\Dashan\\Desktop\\初三重要音频\\navy.jpg");
+	testImageConvert("C:\\Users\\Dashan\\Desktop\\初三重要音频\\navy.jpg");
 	return 0;
 }
 void test()
@@ -57,7 +65,7 @@ void test()
 	InputCalculateVector testOutputKernel;
 	Convert1Dto2D(testInput, testOutput);
 	Convert1Dto2D(testInputKernel, testOutputKernel);
-	InputCalculateConvolutionkernel OutputKernel;
+	InputCalculateVector OutputKernel;
 	OutputKernel.lines = testOutputKernel.lines;
 	OutputKernel.Vector = testOutputKernel.Vector;
 	OutputKernel.VectorNumberEveryLine = testOutputKernel.VectorNumberEveryLine;
@@ -78,4 +86,32 @@ void testRandom(long Geshu)
 	{
 		cout << temp[i] << " ";
 	}
+}
+void testImageConvert(cv::String Address)
+{
+	vector<int> TestInput, TestInputKernel;
+	long i, n, lines, temp;
+
+	cin >> n;
+	cin >> lines;
+
+	for (i = 0; i < n; i++)
+	{
+		cin >> temp;
+		TestInputKernel.push_back(temp);
+	}
+	InputCalculateVector input, outputKernel;
+	InputConvertVector inputKernel;
+
+	inputKernel.Vector = TestInputKernel;
+	inputKernel.lines = lines;
+
+	Convert1Dto2D(inputKernel, outputKernel);
+
+	auto image = cv::imread(Address);
+	input.VectorNumberEveryLine = image.cols;
+	input.lines = image.rows;
+	input.Vector = Mat2Vector<vector<int>>(image);
+
+	ConvolutionCalculate(input, outputKernel);
 }

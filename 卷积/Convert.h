@@ -25,7 +25,7 @@ bool Convert1Dto2D(InputConvertVector inputVector, InputCalculateVector& outputV
 
 	try
 	{
-		//InputCalculateConvolutionkernel FormatedInputConvolutionkernel;
+		//InputCalculateVector FormatedInputConvolutionkernel;
 		InputCalculateVector FormatedInputVector;
 
 		
@@ -127,4 +127,18 @@ bool ConvertImagetoVector(const cv::String PictureAddress)
 	out.open("./Data.txt");
 	out << VectorData << std::endl;
 	return true;
+}
+template<typename _Tp>
+cv::Mat Vector2Mat(std::vector<_Tp> v, int channels, int rows)
+{
+	cv::Mat mat = cv::Mat(v);//将vector变成单列的mat
+	cv::Mat dest = mat.reshape(channels, rows).clone();//PS：必须clone()一份，否则返回出错
+	return dest;
+}
+
+
+template<typename _Tp>
+std::vector<_Tp> Mat2Vector(const cv::Mat &mat)
+{
+	return (std::vector<_Tp>)(mat.reshape(1, 1));//通道数不变，按行转为一行
 }
